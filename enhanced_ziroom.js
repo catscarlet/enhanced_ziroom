@@ -4,7 +4,6 @@
 // @description         Enhanced Ziroom
 // @version             0.0.1
 // @author              catscarlet
-// @match               *.ziroom.com/z/nl/z3.html*
 // @match               *.ziroom.com/z/nl/z*.html*
 // @require             https://code.jquery.com/jquery-latest.js
 // @compatible          chrome  支持
