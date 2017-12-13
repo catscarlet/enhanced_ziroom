@@ -33,7 +33,7 @@ window.jQueryLatest = $.noConflict(true);
             var detailUrl = priceDetail.find('.more').find('a').attr('href');
             var detailId = url2id(detailUrl);
             if (detailId) {
-                priceDetail.append('<strong id=' + detailId + '>new paragraph</strong>');
+                priceDetail.append('<strong id=' + detailId + '>检测中...</strong>');
                 getDetail(detailUrl, detailId);
             }
         });
