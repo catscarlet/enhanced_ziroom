@@ -8,9 +8,7 @@
 
 ## 截图
 
-图一 ![](snap.jpg)
-
-图二 ![](snap2.jpg)
+![](snap.jpg)
 
 ## 使用说明
 
@@ -18,13 +16,13 @@
 
 请首先安装 Userscript manager。谷歌浏览器可以：
 
-- 安装 **<暴力猴 扩展程序>**：[谷歌商店链接](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)，[GitHub链接](https://github.com/violentmonkey/violentmonkey/releases/latest)
+- 安装 **暴力猴 扩展程序**：[谷歌商店链接](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)，[GitHub链接](https://github.com/violentmonkey/violentmonkey/releases/latest)
 - 或安装 **Tampermonkey** ：[谷歌商店链接](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
 
 火狐浏览器同样支持
 
-- 或**Tampermonkey** ，[Firefox 附加组件](https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/)
-- 或安装 **<暴力猴 扩展程序>**，[Firefox 附加组件](https://addons.mozilla.org/zh-CN/firefox/addon/violentmonkey/)
+- 或 **Tampermonkey** ，[Firefox 附加组件](https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/)
+- 或安装 **暴力猴 扩展程序**，[Firefox 附加组件](https://addons.mozilla.org/zh-CN/firefox/addon/violentmonkey/)
 
 之后安装 Enhanced Ziroom：
 
@@ -36,9 +34,9 @@
 
 脚本仅在列表页生效。
 
-有效房源标记为绿色，提示文字为 **我要看房** ，此类包括 **配置中**，**可预定**，以及 **现房**。对于刚刚放出但尚未开放看房或预定的，则会显示 **可签约时间**。（参见图一）
+有效房源标记为绿色，提示文字为 **我要看房** ，此类包括 **配置中**，**可预定**，以及 **现房**。对于刚刚放出但尚未开放看房或预定的，则会显示 **可签约时间**。
 
-无效房源标记为灰色，提示文字为 **已下定**，此类包括......我不知道，传闻是不看房也不签约直接订房的人弄的。（参见图二）
+无效房源标记为灰色，提示文字为 **已下定**，此类包括......我不知道，传闻是不看房也不签约直接订房的人弄的。
 
 提示文字都是在详情页固定位置抠的。
 
