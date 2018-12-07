@@ -49,7 +49,7 @@ window.jQueryLatest = $.noConflict(true);
             },
             error: function(msg) {
                 console.log(msg);
-            }
+            },
         });
     }
 
@@ -78,7 +78,7 @@ window.jQueryLatest = $.noConflict(true);
         var thedom = $('#' + detailId);
         if (status_value) {
             thedom.text(status);
-            thedom.parent().parent().css('background-color', 'lightgreen');
+            //thedom.parent().parent().css('background-color', 'lightgreen');
         } else {
             thedom.text(status);
             thedom.parent().parent().css('background-color', 'grey');
