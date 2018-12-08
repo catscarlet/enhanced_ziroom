@@ -57,11 +57,19 @@ window.jQueryLatest = $.noConflict(true);
         var regexp_status_avaliable = new RegExp(/\<a[^\/a].*class=\"btn view\".*\>(.*)\<\/a>/);
         var regexp_status_unavaliable = new RegExp(/\s\<a[^\/a].*class=\"btn view viewGray\".*\>(.*)\<\/a>/);
         var regexp_name = new RegExp(/\<div.*class=\"room_name\".*\>(.|\n)*\<h2\>((.|\n)*)\<\/h2\>/g);
+        var regexp_monthly = new RegExp(/\<ul class=\"detail_room\"\>(?:.|[\n])*?\<span class=\"icons\"\>月\<\/span\>(?:.|[\n])*?\<\/ul\>/);
+
         var name = domtext2text(msg.match(regexp_name)[0]);
         var status;
         var status_value = false;
         var status_avaliable = msg.match(regexp_status_avaliable);
         var status_unavaliable = msg.match(regexp_status_unavaliable);
+        var monthly_avaliable = msg.match(regexp_monthly);
+
+        var extra_data = {
+            monthly_avaliable: false,
+        };
+
         if (status_avaliable) {
             status = domtext2text(status_avaliable[0]);
             status_value = true;
@@ -70,10 +78,14 @@ window.jQueryLatest = $.noConflict(true);
             status_value = false;
         }
 
-        drawList(status_value, status, detailId);
+        if (monthly_avaliable) {
+            extra_data.monthly_avaliable = true;
+        }
+
+        drawList(status_value, status, detailId, extra_data);
     }
 
-    function drawList(status_value, status, detailId) {
+    function drawList(status_value, status, detailId, extra_data) {
         var css;
         var thedom = $('#' + detailId);
         if (status_value) {
@@ -82,6 +94,12 @@ window.jQueryLatest = $.noConflict(true);
         } else {
             thedom.text(status);
             thedom.parent().parent().css('background-color', 'grey');
+        }
+
+        if (extra_data.monthly_avaliable) {
+            let monthly_style = 'width: 20px; height: 20px; background: #ffa000; border-radius: 5px; color: #fff; text-align: center; line-height: 20px; font-size: 14px; display: inline-block; margin-left: 10px;';
+            let monthly_str = '<span style="' + monthly_style + '">月</span>';
+            thedom.add(monthly_str);
         }
     }
 
