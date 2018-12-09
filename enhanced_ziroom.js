@@ -57,7 +57,7 @@ window.jQueryLatest = $.noConflict(true);
         var regexp_status_avaliable = new RegExp(/\<a[^\/a].*class=\"btn view\".*\>(.*)\<\/a>/);
         var regexp_status_unavaliable = new RegExp(/\s\<a[^\/a].*class=\"btn view viewGray\".*\>(.*)\<\/a>/);
         var regexp_name = new RegExp(/\<div.*class=\"room_name\".*\>(.|\n)*\<h2\>((.|\n)*)\<\/h2\>/g);
-        var regexp_monthly = new RegExp(/\<ul class=\"detail_room\"\>(?:.|[\n])*?\<span class=\"icons\"\>月\<\/span\>(?:.|[\n])*?\<\/ul\>/);
+        var regexp_monthly = new RegExp(/<ul class=\"detail_room\">(?:.|[\n])*?<span class=\"icons\">月<\/span>(?:.|[\n])*?<\/ul>/g);
 
         var name = domtext2text(msg.match(regexp_name)[0]);
         var status;
@@ -99,7 +99,7 @@ window.jQueryLatest = $.noConflict(true);
         if (extra_data.monthly_avaliable) {
             let monthly_style = 'width: 20px; height: 20px; background: #ffa000; border-radius: 5px; color: #fff; text-align: center; line-height: 20px; font-size: 14px; display: inline-block; margin-left: 10px;';
             let monthly_str = '<span style="' + monthly_style + '">月</span>';
-            thedom.add(monthly_str);
+            thedom.append(monthly_str);
         }
     }
 
