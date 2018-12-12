@@ -33,7 +33,9 @@ window.jQueryLatest = $.noConflict(true);
             var detailId = url2id(detailUrl);
             if (detailId) {
                 priceDetail.append('<strong id=' + detailId + '>检测中...</strong>');
-                getDetail(detailUrl, detailId);
+                setTimeout(function() {
+                    getDetail(detailUrl, detailId);
+                }, 500);
             }
         });
     };
