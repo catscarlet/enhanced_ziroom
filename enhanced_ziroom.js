@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name                Enhanced Ziroom
+// @name:en             Enhanced Ziroom
 // @namespace           https://github.com/catscarlet/enhanced_ziroom
 // @description         这是一个增强自如官网访问体验的 userscript 。自如官网现在搜索到的结果把可以租的可以看的不能租的不能看的都混到一起了。这个插件可以在列表页就显示房源的状态，并用颜色标记出来。
 // @description:en      This is a userscript for www.ziroom.com
-// @version             0.1.0
+// @version             0.2.0
 // @author              catscarlet
 // @license             Apache License 2.0
 // @match               *://*.ziroom.com/z/nl/*.html*
@@ -32,7 +33,9 @@ window.jQueryLatest = $.noConflict(true);
             var detailId = url2id(detailUrl);
             if (detailId) {
                 priceDetail.append('<strong id=' + detailId + '>检测中...</strong>');
-                getDetail(detailUrl, detailId);
+                setTimeout(function() {
+                    getDetail(detailUrl, detailId);
+                }, 500);
             }
         });
     };
@@ -48,7 +51,7 @@ window.jQueryLatest = $.noConflict(true);
             },
             error: function(msg) {
                 console.log(msg);
-            }
+            },
         });
     }
 
@@ -56,11 +59,19 @@ window.jQueryLatest = $.noConflict(true);
         var regexp_status_avaliable = new RegExp(/\<a[^\/a].*class=\"btn view\".*\>(.*)\<\/a>/);
         var regexp_status_unavaliable = new RegExp(/\s\<a[^\/a].*class=\"btn view viewGray\".*\>(.*)\<\/a>/);
         var regexp_name = new RegExp(/\<div.*class=\"room_name\".*\>(.|\n)*\<h2\>((.|\n)*)\<\/h2\>/g);
+        var regexp_monthly = new RegExp(/<ul class=\"detail_room\">(?:.|[\n])*?<span class=\"icons\">月<\/span>(?:.|[\n])*?<\/ul>/g);
+
         var name = domtext2text(msg.match(regexp_name)[0]);
         var status;
         var status_value = false;
         var status_avaliable = msg.match(regexp_status_avaliable);
         var status_unavaliable = msg.match(regexp_status_unavaliable);
+        var monthly_avaliable = msg.match(regexp_monthly);
+
+        var extra_data = {
+            monthly_avaliable: false,
+        };
+
         if (status_avaliable) {
             status = domtext2text(status_avaliable[0]);
             status_value = true;
@@ -69,18 +80,28 @@ window.jQueryLatest = $.noConflict(true);
             status_value = false;
         }
 
-        drawList(status_value, status, detailId);
+        if (monthly_avaliable) {
+            extra_data.monthly_avaliable = true;
+        }
+
+        drawList(status_value, status, detailId, extra_data);
     }
 
-    function drawList(status_value, status, detailId) {
+    function drawList(status_value, status, detailId, extra_data) {
         var css;
         var thedom = $('#' + detailId);
         if (status_value) {
             thedom.text(status);
-            thedom.parent().parent().css('background-color', 'lightgreen');
+            //thedom.parent().parent().css('background-color', 'lightgreen');
         } else {
             thedom.text(status);
             thedom.parent().parent().css('background-color', 'grey');
+        }
+
+        if (extra_data.monthly_avaliable) {
+            let monthly_style = 'width: 20px; height: 20px; background: #ffa000; border-radius: 5px; color: #fff; text-align: center; line-height: 20px; font-size: 14px; display: inline-block; margin-left: 10px;';
+            let monthly_str = '<span style="' + monthly_style + '">月</span>';
+            thedom.append(monthly_str);
         }
     }
 
