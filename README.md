@@ -56,6 +56,8 @@
 
 月租房的价格算法极为诡异，自如的管家都是不肯接打电话聊的，都是一条一条微信语音发过来。我是没什么心情研究，所以没做月均价格这个功能，以防误导。谁要研究透了可以发 Push Request。
 
+更多相关信息：<https://blog.catscarlet.com/201812143234.html>
+
 ## 源码
 
 Github：<https://github.com/catscarlet/enhanced_ziroom>
